@@ -5,6 +5,6 @@ main().catch(err => console.log(err))
 
 // Mongodb connection
 async function main() {
-    await mongoose.connect('mongodb://127.0.0.1:27017/todo_db')
+    await mongoose.connect('mongodb+srv://darabperwaiz87:j9901sV8ESJ5cRX2@cluster0.hzpn6oc.mongodb.net/todo_db')
     console.log("Connection Successfully running")
 }
