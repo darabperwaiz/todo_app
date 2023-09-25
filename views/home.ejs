@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="main">
+        <p>TODO App</p>
+        <hr />
+        <form action="/create-todo" method="post">
+          <div class="description">
+            <label for="input">DESCRIPTION</label>
+            <input
+              type="text"
+              name="input"
+              id="input"
+              placeholder="What do you need to do?"
+              autocomplete="off" 
+              required
+            />
+          </div>
+          <hr />
+          <div class="info">
+            <div class="category">
+              <label for="categories">CATEGORY</label>
+              <select id="categories" name="categories">
+                <option value="" disabled selected>Choose a category</option>
+                <option value="Personal">Personal</option>
+                <option value="Work">Work</option>
+                <option value="School">School</option>
+                <option value="Cleaning">Cleaning</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="date">
+              <label for="data">DUE DATE</label>
+              <input type="date" name="date" id="date" />
+            </div>
+          </div>
+          <hr />
+          <div class="btns">
+            <button type="submit" class="btn btn-dark"><i class="fa-solid fa-plus"></i>  ADD TASK</button>
+          </div>
+        </form>
+        <form action="/delete-todo" method="get">
+        <button type="submit" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i>  DELETE TASK</button>
+        <div class="show-data">
+          <h1><%= todo_data.length == 0 ? `ToDo Empty!` : "" %></h1>
+            <% for(let i of todo_data) {%>
+              
+                <hr>
+                <div class="todo">
+                <div class="todo-data">
+                    <input type="checkbox" name="<%=i._id%>" id="<%=i._id%>" >
+                    <div class="todo-check">
+                        <label for="<%=i._id%>"><%=i.input%></label>
+                        <p><i class="far fa-calendar-alt"></i><span><%= i.date == '' ? '' : moment(i.date).format( 'MMM DD, YYYY') %></span></p>
+                    </div>
+                </div>
+                <div class="todo-cat">
+                    <p><%=i.categories%></p>
+                </div>
+            </div>
+                
+                
+                <%}%>
+        </div>
+        
+    </form>
+      </div>
+    </div>
+    <script src="/js/script.js"></script>
+  </body>
+</html>
